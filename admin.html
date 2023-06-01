@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin</title>
+    <style>
+        body {
+            background-color: lightblue;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Tabelnavn</th>
+                <th>Maks kunder</th>
+                <th>Gennemsnitlig ventetid (min)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for table in tables %}
+            <tr>
+                <td>{{ table.name }}</td>
+                <td>{{ table.max_customers }}</td>
+                <td>{{ table.avg_wait_time }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

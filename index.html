@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Køsystem</title>
+    <style>
+        body {
+            background-color: lightblue;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 100px); /* Adjust the height of the container to make room for the footer */
+            text-align: center;
+        }
+        .number {
+            font-size: 60px;
+            border: 4px solid black;
+            padding: 20px;
+            border-radius: 20px;
+        }
+        footer {
+            display: flex;
+            flex-direction: column; /* Arrange the footer content vertically */
+            align-items: flex-end; /* Align the footer content to the right side */
+            position: fixed;
+            bottom: 20px; /* Adjust the bottom position of the footer */
+            right: 20px; /* Adjust the right position of the footer */
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Opdater kønummeret ved at anmode om data fra serveren hvert sekund
+        setInterval(function() {
+            fetch('/update')
+                .then(response => response.text())
+                .then(position => {
+                    document.querySelector('h1').textContent = 'Dit kønummer er: ' + position;
+                    document.querySelector('h2').textContent = position;
+                });
+        }, 1000);
+    </script>
+    <div class="container">
+        <h1>Dit kønummer er:</h1>
+        <h2 class="number">{{ position }}</h2>
+        <h3>forventet tid i kø er: {{ aktuel_ventetid }}min</h3>
+    </div>
+    <footer>
+        <div>
+            <h4>
+                La Glace digitale køsystem. tlf: 33 14 46 46 Addresse: Skoubogade 3, 1158 København
+            </h4>
+        </div>
+    </footer>
+</body>
+</html>
